@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'menupage.dart';
 import 'offerspage.dart';
 import 'orderpage.dart';
+import '/datamanager.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,6 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   
   var selectedIndex = 1;
+  var dataManager = DataManager(); // importing data in the home of app so that the same data can be used by both menu and order pages
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +22,13 @@ class _HomePageState extends State<HomePage> {
 
     switch(selectedIndex) {
       case 0:
-        currentPage = const MenuPage();
+        currentPage = MenuPage(dataManager: dataManager,);
         break;
       case 1:
         currentPage = const OffersPage();
         break;
       case 2:
-        currentPage = const OrderPage();
+        currentPage = OrderPage(dataManager: dataManager,);
     }
 
     return Scaffold(

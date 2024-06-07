@@ -18,6 +18,7 @@ class App extends StatelessWidget {
         textTheme: const TextTheme(
           headlineLarge: TextStyle(color: Colors.brown),
           headlineMedium: TextStyle(color: Colors.brown),
+          headlineSmall: TextStyle(color: Colors.brown),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
