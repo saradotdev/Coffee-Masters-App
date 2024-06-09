@@ -16,19 +16,47 @@ class _OrderPageState extends State<OrderPage> {
     if (widget.dataManager.cart.isEmpty) {
       return Center(child: Text("Your cart is empty", style: Theme.of(context).textTheme.headlineSmall,));
     } else {
-      return ListView.builder(
-        itemCount: widget.dataManager.cart.length,
-        itemBuilder: (context, index) {
-          var currentItem = widget.dataManager.cart[index];
-          return OrderItem(
-            item: currentItem, 
-            onRemove: (currentProduct) {
-              setState(() {
-                widget.dataManager.removeProduct(currentProduct);
-              });
-            }
-          );
-        },
+      return Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              itemCount: widget.dataManager.cart.length,
+              itemBuilder: (context, index) {
+                var currentItem = widget.dataManager.cart[index];
+                return OrderItem(
+                  item: currentItem, 
+                  onRemove: (currentProduct) {
+                    setState(() {
+                      widget.dataManager.removeProduct(currentProduct);
+                    });
+                  }
+                );
+              },
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  "Total",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  "\$${widget.dataManager.cartTotal().toStringAsFixed(2)}",
+                  style: const TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       );
     }
   }
